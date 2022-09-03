@@ -16,13 +16,11 @@ export const deleteTodoAPI = (id) => (dispatch) => {
 };
 
 export const toggleTodoAPI = (todo) => (dispatch) => {
-  return axios.patch(`http://localhost:8080/todos/${todo.id}`, {status: !todo.status});
+  return axios.patch(`http://localhost:8080/todos/${todo.id}`, {
+    status: !todo.status,
+  });
 };
 
-export const editTodoAPI = (todo) => (dispatch) => {
-  return axios.patch(`http://localhost:8080/todos/${todo.id}`, todo);
+export const editTodoAPI = (id, todo) => (dispatch) => {
+  return axios.patch(`http://localhost:8080/todos/${id}`, todo);
 };
-
-
-
-

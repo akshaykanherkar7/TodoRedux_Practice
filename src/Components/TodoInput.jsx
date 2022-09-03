@@ -28,7 +28,7 @@ const TodoInput = () => {
         onChange={(e) => setTitle(e.target.value)}
       />
       <button onClick={handleAddTodo}>ADD</button>
-      <TodoList title={title}></TodoList>
+      <TodoList></TodoList>
     </div>
   );
 };

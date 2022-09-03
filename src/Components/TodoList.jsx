@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   deleteTodoAPI,
   editTodoAPI,
@@ -8,7 +9,8 @@ import {
   toggleTodoAPI,
 } from "../Redux/Todo/todo.action";
 
-const TodoList = ({ title }) => {
+const TodoList = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { todos } = useSelector((state) => state.todo);
   console.log("todos:", todos);
@@ -25,12 +27,13 @@ const TodoList = ({ title }) => {
     });
   };
 
-  const handleEditTodo = (todo) => {
+  const handleEditTodo = (id) => {
     // id,title,status
-    todo.title = title;
-    dispatch(editTodoAPI(todo)).then((res) => {
-      dispatch(getTodoAPI());
-    });
+    // todo.title = title;
+    // dispatch(editTodoAPI(todo)).then((res) => {
+    //   dispatch(getTodoAPI());
+    // });
+    navigate(`/${id}`);
   };
 
   useEffect(() => {
@@ -45,7 +48,7 @@ const TodoList = ({ title }) => {
             <div>{el.title}</div>
             <div>{el.status ? "Completed" : "notCompleted"}</div>
             <div>
-              <button onClick={() => handleEditTodo(el)}>Edit</button>
+              <button onClick={() => handleEditTodo(el.id)}>Edit</button>
               <button
                 onClick={() => handleToggleTodo(el)}
                 style={el.status ? { color: "green" } : { color: "red" }}
